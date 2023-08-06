@@ -1,9 +1,49 @@
-theme = "ayu_mirage"
+theme = "everblush_lighterbg" # Note this is a cutom theme in my themes folder
+
+[keys.normal]
+"S-up" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+"S-down" = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+"S-left" = ["extend_to_line_bounds", "unindent"]
+"S-right" = ["extend_to_line_bounds", "indent"]
+
+[keys.insert]
+"S-up" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "move_line_up"]
+"S-down" = ["extend_to_line_bounds", "delete_selection", "paste_after", "move_line_down"]
+"S-left" = ["move_prev_word_start"]
+"S-right" = ["move_next_word_end"]
+"S-tab" = ["extend_to_line_bounds", "unindent"]
+"C-backspace" = ["delete_word_backward"]
+
+[keys.select]
+"S-up" = ["extend_to_line_bounds", "extend_line_up"]
+"S-down" = ["extend_to_line_bounds", "extend_line_down"]
+"S-left" = ["extend_prev_word_start"]
+"S-right" = ["extend_next_word_end"]
 
 [editor]
 line-number = "relative"
+idle-timeout = 1000
+completion-replace = true
+bufferline = "multiple"
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[editor.statusline]
+left = [
+  "mode", "separator",
+  "total-line-numbers", "file-base-name", "file-modification-indicator"
+]
+center = ["diagnostics"]
+right = ["version-control"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.indent-guides]
+render = true
