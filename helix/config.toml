@@ -1,10 +1,11 @@
-theme = "everblush_lighterbg" # Note this is a cutom theme in my themes folder
+theme = "ayu_dark"
 
 [keys.normal]
 "S-up" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 "S-down" = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 "S-left" = ["extend_to_line_bounds", "unindent"]
 "S-right" = ["extend_to_line_bounds", "indent"]
+"C-'" = [":write-all", ":buffer-close-others"]
 
 [keys.insert]
 "S-up" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "move_line_up"]
@@ -22,9 +23,10 @@ theme = "everblush_lighterbg" # Note this is a cutom theme in my themes folder
 
 [editor]
 line-number = "relative"
-idle-timeout = 1000
+idle-timeout = 650
 completion-replace = true
 bufferline = "multiple"
+auto-format = false
 
 [editor.cursor-shape]
 insert = "bar"
