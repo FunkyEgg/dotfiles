@@ -8,16 +8,14 @@
 
       defaultWorkspace = "workspace number 10";
       startup = [
-        { command = "picom --xrender-sync --xrender-sync-fence"; always = true; notification = false; } # Picom stuff
+        # { command = "picom"; always = true; notification = false; } # Picom stuff
+        # { command = "i3-msg 'workspace 1; exec kitty'"; always = true; notification = false; } # Runs kitty in workspace 1
+        # { command = "i3-msg 'workspace 1; exec firefox'"; always = true; notification = false; } # Starts firefox in workspace 2
         { command = "thunar --daemon"; always = true; notification = false; } # Start thunar daemon
         { command = "nitrogen --set-auto ~/wallpapers/firewatch.jpg"; always = true; notification = false; } # Set background
-        # { command = "i3-msg 'workspace 1; exec kitty'"; always = true; notification = false; } # Runs kitty in workspace 1
-        { command = "i3-msg 'workspace 1; exec firefox'"; always = true; notification = false; } # Starts firefox in workspace 2
-        # { command = "i3-msg 'workspace 7; exec steam'"; always = true; notification = false; } # Starts steam in workspace 7
         { command = "i3-msg 'workspace 10; exec pavucontrol'"; always = true; notification = false; } # Start audio controller in workspace 9
         { command = "i3-msg 'workspace 10; exec noisetorch'"; always = true; notification = false; } # Start noise torch in workspace 9
         { command = "i3-msg 'workspace 9; exec discord'"; always = true; notification = false; } # Starts discord in workspace 8
-        # { command = "i3-msg 'workspace 6; exec spotify'"; always = true; notification = false; } # Starts spotifty in workspace 6
       ];
     };
   };
@@ -25,6 +23,12 @@
   services.picom = {
     enable = true;
     vSync = true;
+    backend = "glx";
+
+    extraArgs = [
+      "--xrender-sync"
+      "--xrender-sync-fence"
+    ];
   };
 
   programs.i3status = {
@@ -63,22 +67,8 @@
         };
       };
 
-      "wireless wlp9s0f3u1" = {
-        position = 3;
-
-        settings = {
-          format_up = "WIFI: %quality %ip";
-          format_down = "WIFI: down";
-        };
-      };
-
-      "cpu_temperature 0" = {
-        position = 4;
-        settings.format = "CPU TEMP: %degrees°C";
-      };
-
       "cpu_usage" = {
-        position = 5;
+        position = 3;
         settings.format = "CPU USAGE: %usage";
       };
 

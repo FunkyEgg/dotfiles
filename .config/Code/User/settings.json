@@ -1,0 +1,82 @@
+{
+    "[nix]": {
+      "editor": {
+        "tabSize": 2
+      }
+    },
+    "copyrightInserter": {
+      "holder": "FunkyEgg <funkyeggdev@proton.me>"
+    },
+    "editor": {
+      "bracketPairColorization": {
+        "enabled": true,
+        "independentColorPoolPerBracketType": true
+      },
+      "codeLensFontFamily": "'Cascadia Code'",
+      "cursorBlinking": "smooth",
+      "cursorSmoothCaretAnimation": "on",
+      "fontFamily": "'Cascadia Code'",
+      "fontLigatures": true,
+      "fontSize": 14,
+      "guides": {
+        "bracketPairs": "active"
+      },
+      "inlayHints": {
+        "fontFamily": "'Cascadia Code'"
+      },
+      "inlineSuggest": {
+        "enabled": true
+      },
+      "lineNumbers": "on",
+      "linkedEditing": true,
+      "multiCursorModifier": "ctrlCmd"
+    },
+    "errorLens": {
+      "enabled": true,
+      "fontFamily": "'Cascadia Code'"
+    },
+    "explorer": {
+      "compactFolders": false,
+      "confirmDelete": false,
+      "confirmDragAndDrop": false
+    },
+    "extensions": {
+      "ignoreRecommendations": true
+    },
+    "git": {
+      "autofetch": true,
+      "enableSmartCommit": true
+    },
+    "license": {
+      "author": "FunkyEgg <funkyeggdev@proton.me>",
+      "default": "apache-2.0",
+      "extension": ".md"
+    },
+    "ols": {
+      "server": {
+        "path": "/home/funky/.nix-profile/bin/ols"
+      }
+    },
+    "telemetry": {
+      "telemetryLevel": "off"
+    },
+    "terminal": {
+      "intergrated": {
+        "fontFamily": "'Cascadia Code'",
+        "gpuAcceleration": "on"
+      }
+    },
+    "workbench": {
+      "colorTheme": "Ayu Green Mirage"
+    },
+    "zig": {
+      "formattingProvider": "off",
+      "zigPath": "zig",
+      "zls": {
+        "enabled": true,
+        "path": "zls"
+      }
+    },
+    "security.workspace.trust.untrustedFiles": "open"
+  }
+  

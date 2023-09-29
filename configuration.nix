@@ -9,8 +9,13 @@
     <home-manager/nixos>
   ];
 
-  # Allow non foss packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    # Allow non foss packages
+    allowUnfree = true;
+
+    # Accept NVida license like whaaaaaaaaat
+    nvidia.acceptLicense = true;
+  };
 
   # Boot settings
   boot = {
@@ -44,13 +49,13 @@
   # Locale settings
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Console font
-  # console.font = "Lat2-Terminus16";
-
   # X11 Stuff
   services = {
     # OpenRGB service
     hardware.openrgb.enable = true;
+
+    # Flatpak
+    flatpak.enable = true;
 
     # Xserver stuff
     xserver = {
@@ -58,15 +63,23 @@
       desktopManager.xterm.enable = false;
       videoDrivers = [ "nvidia" ];
 
+      # Mouse stuff
+      libinput = {
+        enable = true;
+        mouse = {
+          accelSpeed = "0";
+          accelProfile = "flat";
+          tappingDragLock = false;
+          tapping = false;
+        };
+      };
+
       # Enable sddm And i3wm
       displayManager = {
         sddm.enable = true;
         defaultSession = "none+i3";
-        
-        sessionCommands = ''
-          ${pkgs.xorg.xinput} --set-prop 'Razer Razer Basilisk V3' 'libinput Accel Speed' 0.5
-        '';
       };
+
 
       # i3wm stuff
       windowManager.i3 = {
@@ -80,9 +93,9 @@
           dmenu
           i3status
           i3lock
-        
+          
           gnome.adwaita-icon-theme
-          lounge-gtk-theme
+          gnome.gnome-themes-extra
         ];
       };
         
@@ -90,15 +103,23 @@
       layout = "us";
       xkbVariant = "";
     };
+
+    udisks2.enable = true;
+    gvfs.enable = true;
   };
     
   # Enable sound.
   sound.enable = true;
 
-    # Hardware settings
+  # Hardware settings
   hardware = { 
     pulseaudio.enable = true;
-    nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    nvidia = {
+      open = true;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
     
     # Openrazer settings
     openrazer = {
@@ -113,9 +134,6 @@
       driSupport32Bit = true;
     };
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Setup my user
   users.users.funky = {
@@ -133,6 +151,7 @@
       # Don't touch
       stateVersion = "23.11";
 
+      # Env vars
       sessionVariables = {
         EDITOR = "hx";
         SUDO_EDITOR = "hx";
@@ -141,6 +160,7 @@
 
       # Packages to install
       packages = with pkgs; [
+        # GUI Apps
         firefox
         discord
         bitwarden
@@ -148,51 +168,69 @@
         gimp
         obsidian
         vscode
+        obs-studio
 
+        # Thunar
         xfce.thunar
         xfce.thunar-volman
 
-        steam
+        # Gaming stuff
+        flatpak
+        lutris
+        wine
+        gamemode
+        mangohud
         protonup-qt
+        protontricks
+        prismlauncher
       
+        # Dev stack
         kitty
+        zellij
         helix
-        wget
+        ols
+        zls
+
+        # Misc apps
         curl
         htop
         git
+        gh
+        tokei
+        mpv
+        flameshot
         
+        # Audio stuff
         pavucontrol
         noisetorch
 
+        # Waydroid stuff
         weston
         waydroid
       
+        # Misc services
         openrgb
+        dconf
+        razergenie
       ];
-    };
 
-    imports = [
-      # Helix config from https://github.com/FunkyEgg/dotfiles/blob/main/helix/config.toml
-      # Setout how the original config was setout
-      ./configs/helix.nix
+      file = {
+        # i3 + picom
+        ".config/i3/config".source = .config/i3/config;
+        ".config/i3status/config".source = .config/i3status/config;
+        ".config/picom/picom.conf".source = .config/picom/picom.conf;
+        
+        # GTK
+        ".config/gtk-3.0/settings.ini".source = .config/gtk-3.0/settings.ini;
+        ".config/gtk-4.0/settings.ini".source = .config/gtk-4.0/settings.ini;
 
-      # i3wm config (also has picom and x11 stuff)
-      # i3status stuff bnased off of https://github.com/andreatta/config/blob/master/i3/i3status.conf
-      ./configs/i3.nix
-    ];
-
-    # Bash config
-    # TODO: Move to new file because I know how big this will get
-    programs.bash = {
-      enable = true;
-      shellAliases = {
-        rebuildnix = "sudo nixos-rebuild switch";
-        cleanupnix = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d";
-        editnixconfighx = "sudoedit /etc/nixos/configuration.nix";
-        editnixconfigcode = "sudo code /etc/nixos";
-        ifuckedhm = "rm -rf /home/funky/.config";
-        mountd = "udisksctl mount -b /dev/disk/by-label/games && udisksctl mount -b /dev/disk/by-label/devel";
+        # Files
+        "wallpapers/firewatch.jpg".source = wallpapers/firewatch.jpg;
+        
+        # Misc configs
+        ".config/helix/config.toml".source = .config/helix/config.toml;
+        ".config/Code/User/settings.json".source = .config/Code/User/settings.json;
+        ".bashrc".source = ./.bashrc;
       };
     };
   };
@@ -200,30 +238,29 @@
   # Non home manager configs
   programs = {
     noisetorch.enable = true;
-    
-    steam = {
-      enable = true;
-      package = pkgs.steam.override {
-        extraLibraries = p: with p; [
-          (lib.getLib networkmanager)
-        ];
+    dconf.enable = true;
+  };
 
-        extraPkgs = pkgs: with pkgs; [
-          mangohud
-          gamemode
-        ];
-      };
+  # Font settings
+  fonts.packages = with pkgs; [ cascadia-code ];
+
+  # xdg stuff
+  xdg = { 
+    mime.defaultApplications = {
+      "application/pdf" = "firefox.desktop";
+	    "inode/directory" = "thunar.desktop";
+    };
+
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
     };
   };
 
   # Allow waydoird to virtualize
   virtualisation.waydroid.enable = true;
-  
-  # System packages
-  # environment.systemPackages = with pkgs; [];
-  
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Disbale firewall
   networking.firewall.enable = false;
