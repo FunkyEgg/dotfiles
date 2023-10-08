@@ -60,7 +60,12 @@
     # Xserver stuff
     xserver = {
       enable = true;
-      desktopManager.xterm.enable = false;
+      exportConfiguration = true; # link /usr/share/X11/ properly
+
+      layout = "us,us";
+      xkbVariant = ",dvorak";
+      xkbOptions = "grp:alt_space_toggle";
+      
       videoDrivers = [ "nvidia" ];
 
       # Mouse stuff
@@ -98,10 +103,6 @@
           gnome.gnome-themes-extra
         ];
       };
-        
-      # KB Stuff
-      layout = "us";
-      xkbVariant = "";
     };
 
     udisks2.enable = true;
@@ -132,6 +133,8 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+      extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
+      setLdLibraryPath = true;
     };
   };
 
@@ -167,17 +170,21 @@
         spotify
         gimp
         obsidian
-        vscode
         obs-studio
+        vscode
+        protonvpn-gui
+        aseprite
 
         # Thunar
         xfce.thunar
         xfce.thunar-volman
 
         # Gaming stuff
+        python3 # Rotmg
+        wine64Packages.stableFull
+        winetricks
+        dxvk
         flatpak
-        lutris
-        wine
         gamemode
         mangohud
         protonup-qt
@@ -186,13 +193,22 @@
       
         # Dev stack
         kitty
-        zellij
+        xplr
+        ripgrep
         helix
-        ols
+        ungit
+        kakoune
+        neovim
+        # hotspot
+        # linuxPackages_latest.perf
+        # valgrind
+        
+        # Language servers
         zls
 
         # Misc apps
         curl
+        unzip
         htop
         git
         gh
@@ -211,28 +227,25 @@
         # Misc services
         openrgb
         dconf
-        razergenie
       ];
 
       file = {
-        # i3 + picom
-        ".config/i3/config".source = .config/i3/config;
-        ".config/i3status/config".source = .config/i3status/config;
-        ".config/picom/picom.conf".source = .config/picom/picom.conf;
-        
-        # GTK
-        ".config/gtk-3.0/settings.ini".source = .config/gtk-3.0/settings.ini;
-        ".config/gtk-4.0/settings.ini".source = .config/gtk-4.0/settings.ini;
+        ".config" = {
+          source = ./.config;
+          recursive = true;
+        };
 
-        # Files
-        "wallpapers/firewatch.jpg".source = wallpapers/firewatch.jpg;
-        
-        # Misc configs
-        ".config/helix/config.toml".source = .config/helix/config.toml;
-        ".config/Code/User/settings.json".source = .config/Code/User/settings.json;
+        "wallpapers" = {
+          source = ./wallpapers;
+          recursive = true;
+        };
+
         ".bashrc".source = ./.bashrc;
+        ".Xdefaults".source = ./.Xdefaults; # Never commit XDefaults to git since I never use xterm se from smapi
       };
     };
+
+    programs.helix.defaultEditor = true;
   };
 
   # Non home manager configs
@@ -268,4 +281,3 @@
   # Don't touch
   system.stateVersion = "23.11";
 }
-

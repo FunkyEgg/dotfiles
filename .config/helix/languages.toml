@@ -1,0 +1,60 @@
+[[language]]
+name = "zig"
+scope = "source.zig"
+file-types = ["zig"]
+roots = []
+comment-token = "//"
+language-server = { command = "zls", args = [] }
+auto-format = true
+formatter = { command = "git", args = ["stripspace"] }
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "cpp"
+scope = "source.cpp"
+file-types = ["cpp", "hpp"]
+roots = []
+comment-token = "//"
+language-server = { command = "clangd", args = [] }
+auto-format = true
+formatter = { command = "git", args = ["stripspace"] }
+indent = { tab-width = 4, unit = "    " }
+
+
+[[language]]
+name = "c"
+scope = "source.c"
+file-types = ["c", "h"]
+roots = []
+comment-token = "//"
+language-server = { command = "clangd", args = [] }
+auto-format = true
+formatter = { command = "git", args = ["stripspace"] }
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "nasm"
+scope = "source.asm"
+file-types = ["asm", "s", "S"]
+roots = []
+comment-token = ";"
+auto-format = true
+formatter = { command = "git", args = ["stripspace"] }
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "make"
+comment-token = "#"
+auto-format = true
+formatter = { command = "git", args = ["stripspace"] }
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "linker"
+scope = "source.ld"
+file-types = ["ld"]
+roots = []
+comment-token = ""
+auto-format = true
+formatter = { command = "git", args = ["stripspace"] }
+indent = { tab-width = 4, unit = "    " }

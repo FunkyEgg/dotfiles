@@ -93,7 +93,7 @@ bar {
   }
 }
 
-exec_always --no-startup-id picom --xrender-sync --xrender-sync-fence
+# exec_always --no-startup-id picom
 exec_always --no-startup-id thunar --daemon
 exec_always --no-startup-id nitrogen --set-auto ~/wallpapers/firewatch.jpg
 exec_always --no-startup-id i3-msg 'workspace 10; exec pavucontrol'

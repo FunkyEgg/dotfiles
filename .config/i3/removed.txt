@@ -1,2 +1,0 @@
-status_command /nix/store/n14xlf1nkz0dpr3nap057bi7qs66iwjd-i3status-2.14/bin/i3status
-i3bar_command /nix/store/1889v2mi8k9kansjqkf4zqn4a5wafkvq-i3-4.22/bin/i3bar

@@ -13,7 +13,7 @@ shopt -s checkjobs
 alias updatenix='sudo nix-channel --update'
 alias upgradenix='sudo nix-channel --update && sudo nixos-rebuild switch'
 alias rebuildnix='sudo nixos-rebuild switch'
-alias cleanupnix='sudo nix-env --delete-generations old && $ nix-store --gc'
+alias cleanupnix='sudo nix-env --delete-generations old && sudo nix-store --gc && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot'
 alias editnix='code /etc/nixos'
 
 alias enterdev='cd /run/media/funky/devel/'
@@ -22,6 +22,10 @@ alias mountd='udisksctl mount -b /dev/disk/by-label/games && udisksctl mount -b 
 alias flatseal='flatpak run com.github.tchx84.Flatseal'
 alias steam='flatpak run com.valvesoftware.Steam'
 alias screenkey='screenkey -t 1.375 -s small'
+
+# alias rotmg='~/scripts/rotmg.sh'
+
+alias rotmg='WINEARCH=win64 WINEPREFIX=/run/media/funky/games/rotmg wine64 /run/media/funky/games/rotmg/drive_c/Program\ Files/RotMG\ Exalt\ Launcher/RotMG\ Exalt\ Launcher.exe'
 
 # alias eza='eza -F'
 # alias ezaa='eza -aF'

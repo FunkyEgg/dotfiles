@@ -1,43 +1,72 @@
-theme = "ayu_dark"
+theme = "sonokai"
 
 [keys.normal]
-"S-up" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"] # Move line up
-"S-down" = ["extend_to_line_bounds", "delete_selection", "paste_after"] # Move line down
-"S-tab" = ["extend_to_line_bounds", "unindent"] # Unindent line
-"tab" = ["extend_to_line_bounds", "indent"] # Indent line
+"A-up" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"] # Move line up
+"A-down" = ["extend_to_line_bounds", "delete_selection", "paste_after"] # Move line down
 "S-left" = ["move_prev_word_end"] # Move back a word
 "S-right" = ["move_next_word_end"] # Move foward a word
 "C-left" = ["goto_line_start"] # Move to the start of the line
 "C-right" = ["goto_line_end"] # Move to the end of the line
 "C-backspace" = ["delete_word_backward"]
-"S-backspace" = ["kill_to_line_start"] # Delete line
+"A-backspace" = ["kill_to_line_start"] # Delete line
+"S-tab" = ["extend_to_line_bounds", "unindent"] # Unindent line
+"tab" = ["extend_to_line_bounds", "indent"] # Indent line
 "C-'" = [":write-all", ":buffer-close-others"] # Close all buffers except current
 
+"A-n" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"] # Move line up
+"A-t" = ["extend_to_line_bounds", "delete_selection", "paste_after"] # Move line down
+"S-h" = ["move_prev_word_end"] # Move back a word
+"S-s" = ["move_next_word_end"] # Move foward a word
+"C-h" = ["goto_line_start"] # Move to the start of the line
+"C-s" = ["goto_line_end"] # Move to the end of the line
+"h" = ["move_char_left"] # Move left
+"t" = ["move_char_down"] # Move down
+"n" = ["move_char_up"] # Move up
+"s" = ["move_char_right"] # Move right
+
 [keys.insert]
-"S-up" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "move_line_up"] # Move line up
-"S-down" = ["extend_to_line_bounds", "delete_selection", "paste_after", "move_line_down"] # Move line down
-"S-left" = ["move_prev_word_end"] # Move back a word
-"S-right" = ["move_next_word_end"] # Move foward a word
+"A-up" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "move_line_up"] # Move line up
+"A-down" = ["extend_to_line_bounds", "delete_selection", "paste_after", "move_line_down"] # Move line down
+"A-left" = ["goto_line_start"] # Move to the start of the line
+"A-right" = ["goto_line_end"] # Move to the end of the line
+"C-left" = ["move_prev_word_end"] # Move back a word
+"C-right" = ["move_next_word_end"] # Move foward a word
 "S-tab" = ["extend_to_line_bounds", "unindent"] # Unindent line
 "C-backspace" = ["delete_word_backward"] # Delete previous word
-"S-backspace" = ["kill_to_line_start"] # Delete line
-"C-left" = ["goto_line_start"] # Move to the start of the line
-"C-right" = ["goto_line_end"] # Move to the end of the line
+"A-backspace" = ["kill_to_line_start"] # Delete line
+
+"A-n" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "move_line_up"] # Move line up
+"A-t" = ["extend_to_line_bounds", "delete_selection", "paste_after", "move_line_down"] # Move line down
+"A-h" = ["goto_line_start"] # Move to the start of the line
+"A-s" = ["goto_line_end"] # Move to the end of the line
+"C-h" = ["move_prev_word_end"] # Move back a word
+"C-s" = ["move_next_word_end"] # Move foward a word
 
 [keys.select]
-"S-up" = ['ensure_selections_forward', 'extend_to_line_bounds', 'extend_char_right', 'extend_char_left', 'delete_selection', 'move_line_up', 'add_newline_above', 'move_line_up', 'replace_with_yanked'] # Move selection up
-"S-down" = ['ensure_selections_forward', 'extend_to_line_bounds', 'extend_char_right', 'extend_char_left', 'delete_selection', 'add_newline_below', 'move_line_down', 'replace_with_yanked'] # Move selection down 
-"S-left" = ["extend_prev_word_start"] # Extend selection to the start of the previous word
-"S-right" = ["extend_next_word_end"] # Extend selection to the end of the next word
-"C-left" = ["extend_to_line_start"] # extend selection to the start of the line
-"C-right" = ["extend_to_line_end"] # extend selection to the end of the line
+"A-up" = ['ensure_selections_forward', 'extend_to_line_bounds', 'extend_char_right', 'extend_char_left', 'delete_selection', 'move_line_up', 'add_newline_above', 'move_line_up', 'replace_with_yanked'] # Move selection up
+"A-down" = ['ensure_selections_forward', 'extend_to_line_bounds', 'extend_char_right', 'extend_char_left', 'delete_selection', 'add_newline_below', 'move_line_down', 'replace_with_yanked'] # Move selection down 
+"C-left" = ["extend_prev_word_start"] # Extend selection to the start of the previous word
+"C-right" = ["extend_next_word_end"] # Extend selection to the end of the next word
+"A-left" = ["extend_to_line_start"] # extend selection to the start of the line
+"A-right" = ["extend_to_line_end"] # extend selection to the end of the line
+
+"A-n" = ['ensure_selections_forward', 'extend_to_line_bounds', 'extend_char_right', 'extend_char_left', 'delete_selection', 'move_line_up', 'add_newline_above', 'move_line_up', 'replace_with_yanked'] # Move selection up
+"A-t" = ['ensure_selections_forward', 'extend_to_line_bounds', 'extend_char_right', 'extend_char_left', 'delete_selection', 'add_newline_below', 'move_line_down', 'replace_with_yanked'] # Move selection down 
+"C-h" = ["extend_prev_word_start"] # Extend selection to the start of the previous word
+"C-s" = ["extend_next_word_end"] # Extend selection to the end of the next word
+"A-h" = ["extend_to_line_start"] # extend selection to the start of the line
+"A-s" = ["extend_to_line_end"] # extend selection to the end of the line
+"h" = ["move_char_left"] # Move left
+"t" = ["move_char_down"] # Move down
+"n" = ["move_char_up"] # Move up
+"s" = ["move_char_right"] # Move right
 
 [editor]
 line-number = "relative"
 idle-timeout = 650
-completion-replace = true
+completion-replace = false
 bufferline = "multiple"
-auto-format = false
+auto-format = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -62,8 +91,8 @@ right = [
   "version-control", "spacer"
 ]
 
-[editor.lsp]
-display-inlay-hints = true
+# [editor.lsp]
+# display-inlay-hints = true
 
 [editor.indent-guides]
 render = true
