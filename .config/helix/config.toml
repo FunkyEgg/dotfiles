@@ -20,8 +20,8 @@ theme = "sonokai"
 "C-h" = ["goto_line_start"] # Move to the start of the line
 "C-s" = ["goto_line_end"] # Move to the end of the line
 "h" = ["move_char_left"] # Move left
-"t" = ["move_char_down"] # Move down
-"n" = ["move_char_up"] # Move up
+"t" = ["move_line_down"] # Move down
+"n" = ["move_line_up"] # Move up
 "s" = ["move_char_right"] # Move right
 
 [keys.insert]
@@ -57,8 +57,8 @@ theme = "sonokai"
 "A-h" = ["extend_to_line_start"] # extend selection to the start of the line
 "A-s" = ["extend_to_line_end"] # extend selection to the end of the line
 "h" = ["move_char_left"] # Move left
-"t" = ["move_char_down"] # Move down
-"n" = ["move_char_up"] # Move up
+"t" = ["move_line_down"] # Move down
+"n" = ["move_line_up"] # Move up
 "s" = ["move_char_right"] # Move right
 
 [editor]
