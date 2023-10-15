@@ -20,7 +20,6 @@ auto-format = true
 formatter = { command = "git", args = ["stripspace"] }
 indent = { tab-width = 4, unit = "    " }
 
-
 [[language]]
 name = "c"
 scope = "source.c"
@@ -44,6 +43,13 @@ indent = { tab-width = 4, unit = "    " }
 
 [[language]]
 name = "make"
+comment-token = "#"
+auto-format = true
+formatter = { command = "git", args = ["stripspace"] }
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "meson"
 comment-token = "#"
 auto-format = true
 formatter = { command = "git", args = ["stripspace"] }

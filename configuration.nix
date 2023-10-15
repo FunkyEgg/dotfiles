@@ -174,13 +174,14 @@
         vscode
         protonvpn-gui
         aseprite
+        mypaint
 
         # Thunar
         xfce.thunar
         xfce.thunar-volman
 
         # Gaming stuff
-        python3 # Rotmg
+        python310 # Rotmg
         wine64Packages.stableFull
         winetricks
         dxvk
@@ -200,9 +201,17 @@
         kakoune
         neovim
         # hotspot
-        # linuxPackages_latest.perf
         # valgrind
-        
+        # linuxPackages_latest.perf
+
+
+        # Macos vm
+        python310Packages.pip
+        qemu_full
+        virt-manager
+        python310Packages.click
+        python310Packages.requests
+
         # Language servers
         zls
 
@@ -225,7 +234,7 @@
         waydroid
       
         # Misc services
-        openrgb
+        polychromatic
         dconf
       ];
 
