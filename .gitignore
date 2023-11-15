@@ -23,6 +23,7 @@
 !.config/i3status
 !.config/picom
 !.config/zls.json
+!.config/nvim
 
 # Files
 !wallpapers

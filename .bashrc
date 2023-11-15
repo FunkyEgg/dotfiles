@@ -1,15 +1,3 @@
-# Commands that should be applied only for interactive shells.
-[[ $- == *i* ]] || return
-
-HISTFILESIZE=100000
-HISTSIZE=10000
-
-shopt -s histappend
-shopt -s checkwinsize
-shopt -s extglob
-shopt -s globstar
-shopt -s checkjobs
-
 alias updatenix='sudo nix-channel --update'
 alias upgradenix='sudo nix-channel --update && sudo nixos-rebuild switch'
 alias rebuildnix='sudo nixos-rebuild switch'
@@ -17,17 +5,14 @@ alias cleanupnix='sudo nix-env --delete-generations old && sudo nix-store --gc &
 alias editnix='code /etc/nixos'
 
 alias enterdev='cd /run/media/funky/devel/'
-alias mountd='udisksctl mount -b /dev/disk/by-label/games && udisksctl mount -b /dev/disk/by-label/devel'
+alias mountd='udisksctl mount -b /dev/disk/by-label/games && udisksctl mount -b /dev/disk/by-label/devel && udisksctl mount -b /dev/disk/by-label/butter'
 
 alias flatseal='flatpak run com.github.tchx84.Flatseal'
 alias steam='flatpak run com.valvesoftware.Steam'
-alias screenkey='screenkey -t 1.375 -s small'
+alias screenkey='screenkey -t 0.7 -s small'
+alias olympus='flatpak run io.github.everestapi.Olympus'
 
-# alias rotmg='~/scripts/rotmg.sh'
+alias slippi='/run/media/funky/games/slippi/slippi.AppImage'
+alias slippid='nix run github:lytedev/ssbm-nix#slippi-netplay'
 
-alias rotmg='WINEARCH=win64 WINEPREFIX=/run/media/funky/games/rotmg wine64 /run/media/funky/games/rotmg/drive_c/Program\ Files/RotMG\ Exalt\ Launcher/RotMG\ Exalt\ Launcher.exe'
-
-# alias eza='eza -F'
-# alias ezaa='eza -aF'
-# alias ezat='eza -TF'
-# alias rusher='LD_LIBRARY_PATH=/nix/store/rjz12jr6wa46vcaj7v2nsi2x17jibipm-systemd-253.6/lib:$LD_LIBRARY_PATH java -jar RusherInstaller.jar'
+alias drawt='flitter /run/media/funky/games/flitter/draw_steam.scm'

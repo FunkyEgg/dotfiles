@@ -17,6 +17,8 @@
     nvidia.acceptLicense = true;
   };
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
   # Boot settings
   boot = {
     # Boot loader settings
@@ -62,6 +64,7 @@
       enable = true;
       exportConfiguration = true; # link /usr/share/X11/ properly
 
+      # Keyboard stuff
       layout = "us,us";
       xkbVariant = ",dvorak";
       xkbOptions = "grp:alt_space_toggle";
@@ -94,11 +97,9 @@
         extraPackages = with pkgs; [
           picom
           nitrogen
-          
           dmenu
           i3status
           i3lock
-          
           gnome.adwaita-icon-theme
           gnome.gnome-themes-extra
         ];
@@ -106,7 +107,8 @@
     };
 
     udisks2.enable = true;
-    gvfs.enable = true;
+    gvfs.enable = true;  
+    tumbler.enable = true;
   };
     
   # Enable sound.
@@ -117,9 +119,10 @@
     pulseaudio.enable = true;
 
     nvidia = {
-      open = true;
+      modesetting.enable = true;
+      open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
     
     # Openrazer settings
@@ -133,15 +136,15 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
-      setLdLibraryPath = true;
+      # extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
+      # setLdLibraryPath = true;
     };
   };
 
   # Setup my user
   users.users.funky = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "fuse" "disk" ];
   };
 
   # Home manager stuff for my user
@@ -170,20 +173,14 @@
         spotify
         gimp
         obsidian
-        obs-studio
         vscode
-        protonvpn-gui
         aseprite
-        mypaint
-
-        # Thunar
+        soundux
         xfce.thunar
-        xfce.thunar-volman
+        godot_4
+        screenkey
 
         # Gaming stuff
-        python310 # Rotmg
-        wine64Packages.stableFull
-        winetricks
         dxvk
         flatpak
         gamemode
@@ -191,34 +188,26 @@
         protonup-qt
         protontricks
         prismlauncher
-      
+        lutris
+        flitter
+        
         # Dev stack
         kitty
         xplr
         ripgrep
         helix
         ungit
-        kakoune
         neovim
-        # hotspot
-        # valgrind
-        # linuxPackages_latest.perf
-
-
-        # Macos vm
-        python310Packages.pip
-        qemu_full
-        virt-manager
-        python310Packages.click
-        python310Packages.requests
-
+        gcc # Treesitter
+         
         # Language servers
-        zls
+        clang-tools_16
 
         # Misc apps
         curl
         unzip
         htop
+        gtop
         git
         gh
         tokei
@@ -236,6 +225,7 @@
         # Misc services
         polychromatic
         dconf
+        btrfs-progs
       ];
 
       file = {
@@ -254,13 +244,29 @@
       };
     };
 
-    programs.helix.defaultEditor = true;
+    programs = {
+      obs-studio = {
+        enable = true;
+
+        plugins = with pkgs.obs-studio-plugins; [
+          input-overlay
+          obs-pipewire-audio-capture
+        ];
+      };
+
+      helix.defaultEditor = true;
+    };
   };
 
   # Non home manager configs
   programs = {
     noisetorch.enable = true;
     dconf.enable = true;
+
+    thunar.plugins = with pkgs.xfce; [
+      thunar-volman
+      thunar-archive-plugin
+    ];
   };
 
   # Font settings
@@ -281,8 +287,11 @@
     };
   };
 
-  # Allow waydoird to virtualize
-  virtualisation.waydroid.enable = true;
+  # Virtualisation stuff
+  virtualisation = {
+    waydroid.enable = true;
+    docker.enable = true;
+  };
 
   # Disbale firewall
   networking.firewall.enable = false;
