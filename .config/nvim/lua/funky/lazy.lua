@@ -35,5 +35,8 @@ require("lazy").setup({
     "L3MON4D3/LuaSnip",
 
     -- Autopairs
-    { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} }
+    { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
+
+	-- Zig
+	"ziglang/zig.vim",
 })

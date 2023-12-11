@@ -51,8 +51,14 @@
   # Locale settings
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # X11 Stuff
   services = {
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+
     # OpenRGB service
     hardware.openrgb.enable = true;
 
@@ -110,14 +116,9 @@
     gvfs.enable = true;  
     tumbler.enable = true;
   };
-    
-  # Enable sound.
-  sound.enable = true;
 
   # Hardware settings
   hardware = { 
-    pulseaudio.enable = true;
-
     nvidia = {
       modesetting.enable = true;
       open = false;
@@ -174,11 +175,12 @@
         gimp
         obsidian
         vscode
-        aseprite
         soundux
         xfce.thunar
         godot_4
-        screenkey
+        aseprite
+        # screenkey
+        # logisim-evolution
 
         # Gaming stuff
         dxvk
@@ -187,9 +189,11 @@
         mangohud
         protonup-qt
         protontricks
-        prismlauncher
-        lutris
-        flitter
+        # prismlauncher
+        # lutris
+        # flitter
+        wineWowPackages.staging
+        rare
         
         # Dev stack
         kitty
@@ -202,6 +206,8 @@
          
         # Language servers
         clang-tools_16
+        haskell-language-server
+        zls
 
         # Misc apps
         curl
@@ -226,6 +232,7 @@
         polychromatic
         dconf
         btrfs-progs
+        xclip
       ];
 
       file = {
@@ -281,6 +288,8 @@
 
     portal = {
       enable = true;
+      config.common.default = "*";
+
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
       ];
