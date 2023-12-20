@@ -15,6 +15,10 @@
 
     # Accept NVida license like whaaaaaaaaat
     nvidia.acceptLicense = true;
+
+    permittedInsecurePackages = [
+      "electron-25.9.0"
+    ];
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -185,15 +189,14 @@
         # Gaming stuff
         dxvk
         flatpak
-        gamemode
         mangohud
         protonup-qt
         protontricks
+        wineWowPackages.staging
+        # gamemode
         # prismlauncher
         # lutris
         # flitter
-        wineWowPackages.staging
-        rare
         
         # Dev stack
         kitty
@@ -267,6 +270,7 @@
 
   # Non home manager configs
   programs = {
+    gamemode.enable = true;
     noisetorch.enable = true;
     dconf.enable = true;
 
