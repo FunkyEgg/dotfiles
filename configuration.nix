@@ -183,20 +183,16 @@
         xfce.thunar
         godot_4
         aseprite
-        # screenkey
-        # logisim-evolution
-
-        # Gaming stuff
+        goverlay
         dxvk
         flatpak
         mangohud
         protonup-qt
         protontricks
         wineWowPackages.staging
-        # gamemode
-        # prismlauncher
-        # lutris
-        # flitter
+        appimage-run
+        steam
+        prismlauncher
         
         # Dev stack
         kitty
@@ -205,6 +201,7 @@
         helix
         ungit
         neovim
+        gdb
         gcc # Treesitter
          
         # Language servers
@@ -236,6 +233,9 @@
         dconf
         btrfs-progs
         xclip
+        vkbasalt
+        replay-sorcery
+        mangohud
       ];
 
       file = {
