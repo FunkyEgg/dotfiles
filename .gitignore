@@ -9,13 +9,10 @@
 
 # Nix stuff
 !configuration.nix
-!legacy-configs
 
 # Configs
 !.bashrc
-!.vim
-!.config/Code
-!.config/gtk-2.0
+!.gtkrc-2.0
 !.config/gtk-3.0
 !.config/gtk-4.0
 !.config/helix
@@ -24,6 +21,10 @@
 !.config/picom
 !.config/zls.json
 !.config/nvim
+
+# Kakoune
+!.config/kak
+.config/kak/autoload/kak_std_load
 
 # Files
 !wallpapers

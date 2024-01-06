@@ -51,7 +51,7 @@ bindsym Mod4+Shift+r restart
 bindsym Mod4+Shift+space floating toggle
 bindsym Mod4+Up focus up
 bindsym Mod4+a focus parent
-bindsym Mod4+d exec /nix/store/rs1127h5iqjbmma2mkyydgbd00ch4fp7-dmenu-5.2/bin/dmenu_run
+bindsym Mod4+d exec dmenu_run
 bindsym Mod4+e layout toggle split
 bindsym Mod4+f fullscreen toggle
 bindsym Mod4+h split h
@@ -61,6 +61,8 @@ bindsym Mod4+s layout stacking
 bindsym Mod4+space focus mode_toggle
 bindsym Mod4+v split v
 bindsym Mod4+w layout tabbed
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 mode "resize" {
   bindsym Down resize grow height 10 px or 10 ppt
@@ -98,4 +100,3 @@ exec_always --no-startup-id thunar --daemon
 exec_always --no-startup-id nitrogen --set-auto ~/wallpapers/firewatch.jpg
 exec_always --no-startup-id i3-msg 'workspace 10; exec pavucontrol'
 exec_always --no-startup-id i3-msg 'workspace 10; exec noisetorch'
-exec_always --no-startup-id i3-msg 'workspace 9; exec discord'

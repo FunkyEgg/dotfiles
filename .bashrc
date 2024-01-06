@@ -1,3 +1,10 @@
+# Use bash-completion, if available
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+    . /usr/share/bash-completion/bash_completion
+
+PS1='[\u@\H]<\w>\n\$ '
+PS2='=> '
+
 alias updatenix='sudo nix-channel --update'
 alias upgradenix='sudo nix-channel --update && sudo nixos-rebuild switch'
 alias rebuildnix='sudo nixos-rebuild switch'
@@ -7,12 +14,4 @@ alias editnix='code /etc/nixos'
 alias enterdev='cd /run/media/funky/devel/'
 alias mountd='udisksctl mount -b /dev/disk/by-label/games && udisksctl mount -b /dev/disk/by-label/devel && udisksctl mount -b /dev/disk/by-label/butter'
 
-alias flatseal='flatpak run com.github.tchx84.Flatseal'
-alias steam='flatpak run com.valvesoftware.Steam'
 alias screenkey='screenkey -t 0.7 -s small'
-alias olympus='flatpak run io.github.everestapi.Olympus'
-
-alias slippi='/run/media/funky/games/slippi/slippi.AppImage'
-alias slippid='nix run github:lytedev/ssbm-nix#slippi-netplay'
-
-alias drawt='flitter /run/media/funky/games/flitter/draw_steam.scm'

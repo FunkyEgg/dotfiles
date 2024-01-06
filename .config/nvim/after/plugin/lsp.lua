@@ -27,5 +27,6 @@ lspz.setup_servers({
     "clangd",
     "hls",
     "gdscript",
-	"zls"
+	"zls",
+	"ols"
 })
