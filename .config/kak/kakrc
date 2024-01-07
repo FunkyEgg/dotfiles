@@ -1,5 +1,5 @@
 # Set colorscheme
-colorscheme palenight
+colorscheme gruvbox-dark
 
 # Load standard kak autoload
 nop %sh{
@@ -17,18 +17,23 @@ set-option global ui_options terminal_assistant=none
 
 # Declare custom modes
 declare-user-mode buff
+declare-user-mode file
 
 # User mode keymap
 map -docstring "Comments current line" global user c ":comment-line<ret>"
-map -docstring "Enters Buffer mode" global user b ":enter-user-mode buff<ret>"
+map -docstring "Enters buffer menu" global user b ":enter-user-mode buff<ret>"
+map -docstring "Enters file menu" global user f ":enter-user-mode file<ret>"
 
 # Buffer mode keymap
 map -docstring "Closes the current buffer" global buff c ":db<ret>"
 map -docstring "Goes to the next buffer" global buff n ":bn<ret>"
 map -docstring "Goes to the previous buffer" global buff p ":bp<ret>"
+map -docstring "Enters buffer finder" global buff f ":buffer-switcher<ret>"
 # TODO:
-# 	- Find a way to list all buffers
 # 	- Find a way to close all buffers but the current one
+
+# File mode keymap
+map -docstring "Opens file finder" global file f ":filetree<ret>"
 
 # Plugin configs
 set-option global auto_pairs ( ) { } [ ] '"' '"' "'" "'" ` `
