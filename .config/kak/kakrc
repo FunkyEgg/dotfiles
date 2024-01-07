@@ -1,5 +1,5 @@
 # Set colorscheme
-colorscheme gruvbox-dark
+colorscheme palenight
 
 # Load standard kak autoload
 nop %sh{
@@ -32,3 +32,4 @@ map -docstring "Goes to the previous buffer" global buff p ":bp<ret>"
 
 # Plugin configs
 set-option global auto_pairs ( ) { } [ ] '"' '"' "'" "'" ` `
+enable-auto-pairs
