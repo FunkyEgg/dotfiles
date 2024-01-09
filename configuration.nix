@@ -181,20 +181,16 @@
         vscode
         soundux
         xfce.thunar
-        godot_4
-        aseprite
-        goverlay
         dxvk
         flatpak
-        mangohud
         protonup-qt
-        protontricks
         wineWowPackages.staging
         appimage-run
         steam
         prismlauncher
         
         # Dev stack
+        kakoune
         kitty
         xplr
         ripgrep
@@ -213,7 +209,6 @@
         curl
         unzip
         htop
-        gtop
         git
         gh
         tokei
