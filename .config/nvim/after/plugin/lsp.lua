@@ -28,5 +28,6 @@ lspz.setup_servers({
     "hls",
     "gdscript",
 	"zls",
-	"ols"
+	"ols",
+    "gopls"
 })

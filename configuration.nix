@@ -182,7 +182,6 @@
         soundux
         xfce.thunar
         dxvk
-        flatpak
         protonup-qt
         wineWowPackages.staging
         appimage-run
@@ -198,12 +197,14 @@
         ungit
         neovim
         gdb
+        tree # Kakoune file tree
         gcc # Treesitter
          
         # Language servers
         clang-tools_16
         haskell-language-server
         zls
+        gopls
 
         # Misc apps
         curl
