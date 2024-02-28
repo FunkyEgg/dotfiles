@@ -9,11 +9,13 @@ nop %sh{
 # Highlighters
 add-highlighter global/ number-lines
 add-highlighter global/ show-matching
+add-highlighter global/ regex \h+$ 0:Error
 
 # Options
 set-option global tabstop 4
 set-option global indentwidth 4
 set-option global ui_options terminal_assistant=none
+set-option global scrolloff 1,3
 
 # Declare custom modes
 declare-user-mode buff
@@ -23,6 +25,8 @@ declare-user-mode file
 map -docstring "Comments current line" global user c ":comment-line<ret>"
 map -docstring "Enters buffer menu" global user b ":enter-user-mode buff<ret>"
 map -docstring "Enters file menu" global user f ":enter-user-mode file<ret>"
+map -docstring "Enter lsp menu" global user l ":enter-user-mode lsp<ret>"
+map -docstring "Enter fzf.kak mode" global user z ":fzf-mode<ret>"
 
 # Buffer mode keymap
 map -docstring "Closes the current buffer" global buff c ":db<ret>"
@@ -33,8 +37,33 @@ map -docstring "Enters buffer finder" global buff f ":buffer-switcher<ret>"
 # 	- Find a way to close all buffers but the current one
 
 # File mode keymap
-map -docstring "Opens file finder" global file f ":filetree<ret>"
+map -docstring "Opens file finder (consider gitignore)" global file f ":filetree -consider-gitignore<ret>"
+map -docstring "Opens file finder (don't consider gitignore)" global file g ":filetree<ret>"
+
+# Insert complete keymap
+hook global InsertCompletionShow .* %{
+  map window insert <tab> <c-n>
+  map window insert <s-tab> <c-p>
+}
+hook global InsertCompletionHide .* %{
+  unmap window insert <tab> <c-n>
+  unmap window insert <s-tab> <c-p>
+}
+
+# Move line up and down
+map global normal <a-up> 'x"aZy<a-;>kPZ"azdz'
+map global normal <a-down> 'xdp'
 
 # Plugin configs
+# Autopairs
 set-option global auto_pairs ( ) { } [ ] '"' '"' "'" "'" ` `
 enable-auto-pairs
+
+# connect.kak
+require-module connect
+
+# kak-lsp
+eval %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=(rust|python|odin) %{
+	lsp-enable-window
+}

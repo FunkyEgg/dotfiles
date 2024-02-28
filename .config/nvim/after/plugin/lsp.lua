@@ -26,8 +26,7 @@ cmp.setup({
 lspz.setup_servers({
     "clangd",
     "hls",
-    "gdscript",
 	"zls",
 	"ols",
-    "gopls"
+	"rust_analyzer"
 })
