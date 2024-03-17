@@ -15,4 +15,4 @@ alias enterdev='cd /home/funky/mnt/devel/'
 # alias mountd='udisksctl mount -b /dev/disk/by-label/games && udisksctl mount -b /dev/disk/by-label/devel && udisksctl mount -b /dev/disk/by-label/butter'
 
 alias screenkey='screenkey -t 0.7 -s small'
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
